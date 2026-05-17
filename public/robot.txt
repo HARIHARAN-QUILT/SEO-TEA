@@ -1,0 +1,18 @@
+# robots.txt for Pondi Tea House
+# https://ponditeahouse.in
+
+# Allow all search engine bots
+User-agent: *
+Allow: /
+
+# Block admin/private paths (add yours here)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# Sitemap location — this is what Google Search Console reads
+Sitemap: https://tea-shop-pondy.vercel.app/sitemap.xml
+
+# Crawl delay (optional, be polite to bots)
+Crawl-delay: 5
