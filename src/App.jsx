@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const styles = {
   root: {
@@ -8,7 +8,6 @@ const styles = {
     minHeight: "100vh",
     overflowX: "hidden",
   },
-  // ── NAV ──
   nav: {
     position: "fixed",
     top: 0,
@@ -45,7 +44,6 @@ const styles = {
     textTransform: "uppercase",
     transition: "color 0.2s",
   },
-  // ── HERO ──
   hero: {
     minHeight: "100vh",
     display: "flex",
@@ -131,7 +129,6 @@ const styles = {
   heroStat: { textAlign: "center" },
   heroStatNum: { fontSize: "2rem", fontWeight: "700", color: "#d2a050" },
   heroStatLabel: { fontSize: "0.75rem", letterSpacing: "0.15em", color: "#806040", textTransform: "uppercase" },
-  // ── SECTIONS ──
   section: { padding: "100px 24px", maxWidth: "1200px", margin: "0 auto" },
   sectionLabel: {
     fontSize: "0.7rem",
@@ -149,7 +146,6 @@ const styles = {
   },
   sectionDesc: { color: "#9a7f60", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "560px" },
   divider: { borderColor: "rgba(210,160,80,0.12)", margin: "0" },
-  // ── MENU GRID ──
   menuGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
@@ -179,7 +175,6 @@ const styles = {
     textTransform: "uppercase",
     marginLeft: "10px",
   },
-  // ── FEATURES ──
   featuresGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
@@ -194,7 +189,6 @@ const styles = {
   featureIcon: { fontSize: "1.8rem", marginBottom: "12px" },
   featureTitle: { fontSize: "1rem", fontWeight: "600", marginBottom: "8px", color: "#e8d5b5" },
   featureText: { fontSize: "0.88rem", color: "#7a6040", lineHeight: 1.65 },
-  // ── TESTIMONIALS ──
   testimonialsGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
@@ -210,7 +204,6 @@ const styles = {
   stars: { color: "#d2a050", fontSize: "0.9rem", marginBottom: "12px", letterSpacing: "3px" },
   testimonialText: { fontSize: "0.95rem", color: "#c8b89a", lineHeight: 1.7, marginBottom: "16px", fontStyle: "italic" },
   testimonialName: { fontSize: "0.8rem", color: "#806040", letterSpacing: "0.1em", textTransform: "uppercase" },
-  // ── INFO BAR ──
   infoBar: {
     background: "rgba(210,160,80,0.06)",
     borderTop: "1px solid rgba(210,160,80,0.1)",
@@ -225,11 +218,9 @@ const styles = {
     gap: "32px",
     textAlign: "center",
   },
-  infoItem: {},
   infoIcon: { fontSize: "1.6rem", marginBottom: "10px" },
   infoTitle: { fontSize: "0.75rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#d2a050", marginBottom: "6px" },
   infoText: { fontSize: "0.9rem", color: "#9a7f60", lineHeight: 1.5 },
-  // ── MAP CTA ──
   mapCta: {
     background: "linear-gradient(135deg, rgba(120,70,20,0.18) 0%, rgba(13,10,6,0) 60%)",
     border: "1px solid rgba(210,160,80,0.12)",
@@ -239,7 +230,6 @@ const styles = {
     maxWidth: "700px",
     margin: "0 auto",
   },
-  // ── FOOTER ──
   footer: {
     background: "#070503",
     borderTop: "1px solid rgba(210,160,80,0.08)",
@@ -290,22 +280,79 @@ const features = [
 ];
 
 const testimonials = [
-  { text: "Best chai I've had in Pondicherry! The Pondy Special Chai is unlike anything in the city. I visit twice a week.", name: "Kavitha R., White Town", stars: 5 },
-  { text: "The ambience is perfect for working remotely. Great Wi-Fi, quiet music, and the Darjeeling tea is exceptional.", name: "Arjun M., Auroville", stars: 5 },
-  { text: "Stumbled upon this tea shop near the beach. The Lemon Ginger Iced Tea on a hot day was absolutely divine!", name: "Priya S., Chennai visitor", stars: 5 },
-  { text: "I was looking for a coffee shop in Pondy and found this gem. Their filter coffee rivals any in Chennai!", name: "Rajan V., Cuddalore", stars: 5 },
-  { text: "The French Quarter Milk Tea is revolutionary. Finally a tea shop near me that takes quality seriously.", name: "Sophie D., Auroville", stars: 5 },
-  { text: "Amazing selection — from basic chai to premium Darjeeling. Definitely the best tea shop in Pondy.", name: "Murugan K., Villupuram", stars: 5 },
+  { text: "Best chai I've had in Pondicherry! The Pondy Special Chai is unlike anything in the city. I visit twice a week.", name: "Kavitha R.", location: "White Town", stars: 5 },
+  { text: "The ambience is perfect for working remotely. Great Wi-Fi, quiet music, and the Darjeeling tea is exceptional.", name: "Arjun M.", location: "Auroville", stars: 5 },
+  { text: "Stumbled upon this tea shop near the beach. The Lemon Ginger Iced Tea on a hot day was absolutely divine!", name: "Priya S.", location: "Chennai visitor", stars: 5 },
+  { text: "I was looking for a coffee shop in Pondy and found this gem. Their filter coffee rivals any in Chennai!", name: "Rajan V.", location: "Cuddalore", stars: 5 },
+  { text: "The French Quarter Milk Tea is revolutionary. Finally a tea shop near me that takes quality seriously.", name: "Sophie D.", location: "Auroville", stars: 5 },
+  { text: "Amazing selection — from basic chai to premium Darjeeling. Definitely the best tea shop in Pondy.", name: "Murugan K.", location: "Villupuram", stars: 5 },
 ];
 
 const keywordsMeta = `best tea shop in pondy, best tea shop in pondicherry, tea shop near me, tea shop in pondicherry, coffee shop in pondy, coffee shop in pondicherry, chai shop pondicherry, milk tea pondicherry, bubble tea pondy, filter coffee pondicherry, best cafe in pondicherry, tea cafe white town pondicherry, puducherry tea shop, tea near beach pondicherry`;
+
+// ── SCHEMA: build the full JSON-LD object ──────────────────────────────────
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Pondi Tea House",
+  "alternateName": ["Best Tea Shop in Pondy", "Tea Shop Pondicherry", "Chai Cafe Puducherry"],
+  "description": "Pondi Tea House is the best tea shop in Pondicherry, offering authentic chai, filter coffee, premium Darjeeling, bubble tea and herbal blends in a heritage setting in White Town.",
+  "url": "https://ponditeahouse.in",
+  "telephone": "+91-98765-43210",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12, Rue Suffren, White Town",
+    "addressLocality": "Pondicherry",
+    "addressRegion": "Puducherry",
+    "postalCode": "605001",
+    "addressCountry": "IN",
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 11.9416, "longitude": 79.8083 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "07:00",
+    "closes": "22:00",
+  }],
+  "servesCuisine": ["Tea", "Coffee", "Chai", "Bubble Tea"],
+  "priceRange": "₹35 - ₹130",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "847",
+  },
+  // ✅ FIX 1: author uses "@type": "Person"
+  // ✅ FIX 2: each review has "itemReviewed" pointing back to the cafe
+  "review": testimonials.map(t => ({
+    "@type": "Review",
+    "reviewBody": t.text,
+    "author": {
+      "@type": "Person",
+      "name": t.name,
+    },
+    "itemReviewed": {
+      "@type": "CafeOrCoffeeShop",
+      "name": "Pondi Tea House",
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": String(t.stars),
+      "bestRating": "5",
+    },
+  })),
+  "image": "https://ponditeahouse.in/og-image.jpg",
+  "sameAs": [
+    "https://www.instagram.com/ponditeahouse",
+    "https://www.facebook.com/ponditeahouse",
+    "https://g.co/kgs/ponditeahouse",
+  ],
+};
 
 export default function PondiTeaHouse() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    // Inject SEO meta tags into document head (works in a real deployment)
     document.title = "Pondi Tea House | Best Tea Shop in Pondicherry | Chai & Coffee Near You";
     const metas = [
       { name: "description", content: "Pondi Tea House — the best tea shop in Pondicherry (Pondy). Authentic chai, filter coffee, premium Darjeeling, bubble tea & more. Located in White Town, Puducherry. Open 7AM–10PM." },
@@ -333,7 +380,6 @@ export default function PondiTeaHouse() {
 
   return (
     <>
-      {/* ── GLOBAL KEYFRAMES ── */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -343,9 +389,6 @@ export default function PondiTeaHouse() {
           from { opacity: 0; transform: translateY(28px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes shimmer {
-          0%,100% { opacity: 0.6; } 50% { opacity: 1; }
-        }
         .tea-card:hover { border-color: rgba(210,160,80,0.4) !important; transform: translateY(-4px); }
         .btn-primary:hover { background: #e8b860 !important; transform: translateY(-2px); }
         .btn-outline:hover { border-color: rgba(210,160,80,0.8) !important; color: #f0c870 !important; }
@@ -354,49 +397,21 @@ export default function PondiTeaHouse() {
         ::-webkit-scrollbar-thumb { background: rgba(210,160,80,0.3); border-radius: 3px; }
       `}</style>
 
-      {/* ── SCHEMA MARKUP (JSON-LD for Google) ── */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "CafeOrCoffeeShop",
-        "name": "Pondi Tea House",
-        "alternateName": ["Best Tea Shop in Pondy", "Tea Shop Pondicherry", "Chai Cafe Puducherry"],
-        "description": "Pondi Tea House is the best tea shop in Pondicherry, offering authentic chai, filter coffee, premium Darjeeling, bubble tea and herbal blends in a heritage setting in White Town.",
-        "url": "https://ponditeahouse.in",
-        "telephone": "+91-98765-43210",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "12, Rue Suffren, White Town",
-          "addressLocality": "Pondicherry",
-          "addressRegion": "Puducherry",
-          "postalCode": "605001",
-          "addressCountry": "IN"
-        },
-        "geo": { "@type": "GeoCoordinates", "latitude": 11.9416, "longitude": 79.8083 },
-        "openingHoursSpecification": [{
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-          "opens": "07:00", "closes": "22:00"
-        }],
-        "servesCuisine": ["Tea", "Coffee", "Chai", "Bubble Tea"],
-        "priceRange": "₹35 - ₹130",
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "847" },
-        "image": "https://ponditeahouse.in/og-image.jpg",
-        "sameAs": [
-          "https://www.instagram.com/ponditeahouse",
-          "https://www.facebook.com/ponditeahouse",
-          "https://g.co/kgs/ponditeahouse"
-        ]
-      })}} />
+      {/* ── JSON-LD SCHEMA (all fixes applied) ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData, null, 2) }}
+      />
 
       <div style={{ ...styles.root, fontFamily: "'DM Sans', 'Georgia', sans-serif" }}>
+
         {/* ── NAV ── */}
         <nav style={{ ...styles.nav, boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.5)" : "none" }}>
           <a href="#home" style={styles.navLogo}>🍵 Pondi Tea House</a>
           <ul style={styles.navLinks}>
             {["Menu", "About", "Reviews", "Find Us"].map(l => (
               <li key={l}>
-                <a href={`#${l.toLowerCase().replace(" ", "")}`} style={styles.navLink}
-                  className="footer-link">{l}</a>
+                <a href={`#${l.toLowerCase().replace(" ", "")}`} style={styles.navLink} className="footer-link">{l}</a>
               </li>
             ))}
           </ul>
@@ -404,9 +419,8 @@ export default function PondiTeaHouse() {
 
         {/* ── HERO ── */}
         <section id="home" style={styles.hero} itemScope itemType="https://schema.org/CafeOrCoffeeShop">
-          {/* Hidden SEO text for crawlers */}
           <span style={styles.schemaHidden} itemProp="name">Pondi Tea House - Best Tea Shop in Pondicherry</span>
-          <span style={styles.schemaHidden} itemProp="description">Best tea shop in Pondy, tea shop near me, coffee shop in pondicherry, chai shop puducherry, milk tea pondicherry, bubble tea pondy</span>
+          <span style={styles.schemaHidden} itemProp="description">Best tea shop in Pondy, tea shop near me, coffee shop in pondicherry, chai shop puducherry</span>
 
           <span style={styles.heroTag}>☕ Open Today · 7 AM – 10 PM · White Town, Puducherry</span>
           <h1 style={{ ...styles.heroTitle, fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -417,10 +431,12 @@ export default function PondiTeaHouse() {
             From the morning's first chai to the evening's last sip — we brew every cup with whole spices, single-origin leaves, and a whole lot of love in the heart of White Town.
           </p>
           <div style={styles.heroBtns}>
-            <button style={styles.btnPrimary} className="btn-primary" onClick={() => document.getElementById("menu").scrollIntoView({ behavior: "smooth" })}>
+            <button style={styles.btnPrimary} className="btn-primary"
+              onClick={() => document.getElementById("menu").scrollIntoView({ behavior: "smooth" })}>
               EXPLORE MENU
             </button>
-            <button style={styles.btnOutline} className="btn-outline" onClick={() => document.getElementById("findus").scrollIntoView({ behavior: "smooth" })}>
+            <button style={styles.btnOutline} className="btn-outline"
+              onClick={() => document.getElementById("findus").scrollIntoView({ behavior: "smooth" })}>
               FIND US IN PONDY
             </button>
           </div>
@@ -441,11 +457,11 @@ export default function PondiTeaHouse() {
           <div style={styles.infoBarInner}>
             {[
               { icon: "📍", title: "Address", text: "12, Rue Suffren, White Town\nPondicherry – 605001" },
-              { icon: "🕐", title: "Hours", text: "Mon – Sun\n7:00 AM – 10:00 PM" },
+              { icon: "🕐", title: "Hours",   text: "Mon – Sun\n7:00 AM – 10:00 PM" },
               { icon: "📞", title: "Call Us", text: "+91 98765 43210\n(Also on WhatsApp)" },
-              { icon: "🛵", title: "Delivery", text: "Zomato & Swiggy\nWithin 5 km of White Town" },
+              { icon: "🛵", title: "Delivery",text: "Zomato & Swiggy\nWithin 5 km of White Town" },
             ].map(({ icon, title, text }) => (
-              <div key={title} style={styles.infoItem}>
+              <div key={title}>
                 <div style={styles.infoIcon}>{icon}</div>
                 <div style={styles.infoTitle}>{title}</div>
                 <div style={styles.infoText}>{text.split("\n").map((t, i) => <span key={i}>{t}<br /></span>)}</div>
@@ -463,12 +479,6 @@ export default function PondiTeaHouse() {
           <p style={styles.sectionDesc}>
             Every cup on our menu is crafted from a recipe with a purpose — chai from your grandmother's kitchen, teas from the Nilgiris, and creative blends inspired by Pondy's French heritage.
           </p>
-
-          {/* SEO keyword paragraph */}
-          <p style={{ fontSize: "0.01px", color: "transparent", userSelect: "none", height: 0, overflow: "hidden" }} aria-hidden="true">
-            Best tea shop in Pondy. Tea shop near me Pondicherry. Coffee shop in Pondy. Chai shop Puducherry. Bubble tea Pondicherry. Best cafe in Pondicherry. Tea shop in White Town. Filter coffee Pondicherry.
-          </p>
-
           <div style={styles.menuGrid}>
             {menuItems.map((item, i) => (
               <article
@@ -495,7 +505,7 @@ export default function PondiTeaHouse() {
 
         <hr style={styles.divider} />
 
-        {/* ── ABOUT / WHY US ── */}
+        {/* ── ABOUT ── */}
         <section id="about" style={styles.section}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
             <div>
@@ -532,14 +542,51 @@ export default function PondiTeaHouse() {
             What Pondicherry Says About Us
           </h2>
           <p style={styles.sectionDesc}>
-            Rated <strong style={{ color: "#d2a050" }}>4.9 / 5 on Google</strong> with 847+ verified reviews. The numbers don't lie.
+            Rated <strong style={{ color: "#d2a050" }}>4.9 / 5 on Google</strong> with 847+ verified reviews.
           </p>
           <div style={styles.testimonialsGrid}>
             {testimonials.map((t, i) => (
-              <div key={i} style={styles.testimonialCard} itemScope itemType="https://schema.org/Review">
+              <div
+                key={i}
+                style={styles.testimonialCard}
+                itemScope
+                itemType="https://schema.org/Review"
+              >
+                {/* ✅ FIX: itemReviewed tells Google what is being reviewed */}
+                <div
+                  itemProp="itemReviewed"
+                  itemScope
+                  itemType="https://schema.org/CafeOrCoffeeShop"
+                  style={{ display: "none" }}
+                >
+                  <meta itemProp="name" content="Pondi Tea House" />
+                  <meta itemProp="url" content="https://ponditeahouse.in" />
+                </div>
+
+                {/* ✅ FIX: reviewRating */}
+                <div
+                  itemProp="reviewRating"
+                  itemScope
+                  itemType="https://schema.org/Rating"
+                  style={{ display: "none" }}
+                >
+                  <meta itemProp="ratingValue" content={String(t.stars)} />
+                  <meta itemProp="bestRating" content="5" />
+                </div>
+
                 <div style={styles.stars}>{"★".repeat(t.stars)}</div>
                 <p style={styles.testimonialText} itemProp="reviewBody">"{t.text}"</p>
-                <div style={styles.testimonialName} itemProp="author">{t.name}</div>
+
+                {/* ✅ FIX: author is Person not Thing */}
+                <div
+                  itemProp="author"
+                  itemScope
+                  itemType="https://schema.org/Person"
+                >
+                  <span style={styles.testimonialName} itemProp="name">
+                    {t.name}, {t.location}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -582,7 +629,6 @@ export default function PondiTeaHouse() {
             </div>
           </div>
 
-          {/* Embedded map iframe */}
           <div style={{ marginTop: "48px", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(210,160,80,0.12)" }}>
             <iframe
               title="Pondi Tea House Location - Best Tea Shop in Pondicherry"
@@ -627,7 +673,7 @@ export default function PondiTeaHouse() {
               <p style={{ ...styles.footerText, marginBottom: "8px" }}>📞 +91 98765 43210</p>
               <p style={{ ...styles.footerText, marginBottom: "8px" }}>📧 hello@ponditeahouse.in</p>
               <p style={{ ...styles.footerText, marginBottom: "8px" }}>📍 12, Rue Suffren, White Town, Pondicherry 605001</p>
-              <p style={{ ...styles.footerText }}>🕐 Open Daily · 7 AM – 10 PM</p>
+              <p style={styles.footerText}>🕐 Open Daily · 7 AM – 10 PM</p>
             </div>
           </div>
           <div style={styles.footerBottom}>
